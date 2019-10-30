@@ -1,0 +1,53 @@
+"""
+growth rate
+population rate
+employee
+revenue rate
+workers
+"""
+
+print("Welcome")
+
+data_workers = {"farming": 0.75}
+data_house = {"adult": 2, "child": 5, "older": 2, "max_age": 60}
+
+
+def get_pop_data_fn():
+    with open("pop_data.txt", "r") as fl:
+        fl_data = [e.strip() for e in fl.readlines()]
+        current_data = [int(e) for e in fl_data]
+        return current_data
+
+
+def save_pop_data_fn(pop):
+    with open("pop_data.txt", "a") as fl:
+        fl.write(f'\n{int(pop)}')
+
+
+def get_house_fn():
+    current_pop_ = get_pop_data_fn()
+    house = current_pop_[-1] / (data_house["adult"] + data_house["older"] + data_house["child"])
+    return house
+
+
+def calculate_pop_growth_fn():
+    house_n = get_house_fn()
+    child_rate = data_house["child"] / 20
+    born = int(house_n * child_rate)
+    dead_rate = (data_house["adult"] + data_house["older"] + data_house["child"]) / data_house["max_age"]
+    dead = int(house_n * dead_rate)
+    return born - dead
+
+
+running = True
+
+while running:
+    choice = int(input("Enter your choice"))
+
+    if choice == 0:
+        print("Goodbye")
+        break
+
+    elif choice == 1:
+        current_pop = get_pop_data_fn()[-1]
+        workers = int(get_house_fn() * 2)
