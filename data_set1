@@ -1,0 +1,27 @@
+
+cow_dt = {"carcass": 350, "age": 10, "milk": 3000,
+          "silage": 4300, "forge": 400, "born": 1}
+sheep_dt = {"carcass": 25, "age": 4, "milk": 50, "wool": 2,
+            "silage": 450, "forge": 20, "born": 3}
+
+
+grain_dt = {"product": 310, "seed": 25}
+legumes_dt = {"product": 78, "seed": 1}
+cotton_dt = {"product": 550}
+
+
+house_dt = {"adult": 2, "child": 5, "older": 2, "max_age": 60}
+
+
+family_farm_dt = {"cow": 2, "sheep": 15, "worker": 12,
+                  "land": 40, "building": 1000, "equipment": 2,
+                  "milk": 6750,
+                  "meat": 1075,
+                  "wool": 30,
+                  "grain": 8200, "legumes": 1040}
+
+farm_dt = {"cow": 50, "sheep": 200, "worker": 30,
+           "land": 300, "building": 10000, "tractor": 2, "equipment": 50,
+           "milk": 6750,
+           "meat": 1075,
+           "wool": 30}
