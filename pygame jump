@@ -1,0 +1,68 @@
+import pygame
+
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+SCREEN_WIDTH = 500
+SCREEN_HEGHT = 500
+
+pygame.init()
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEGHT))
+clock = pygame.time.Clock()
+
+pos_x = 50
+pos_y = 350
+speed = 5
+width = 50
+hight = 50
+direct = -1
+
+is_jump = False
+jump_count = 10
+
+run = True
+while run:
+    clock.tick(30)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    # update
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_LEFT]:
+        if pos_x < 0:
+            pos_x = 0
+        pos_x -= speed
+    if keys[pygame.K_RIGHT]:
+        if pos_x > SCREEN_WIDTH - 50:
+            pos_x = SCREEN_WIDTH - 50
+        pos_x += speed
+    if not is_jump:
+        if keys[pygame.K_UP]:
+            if pos_y < 0:
+                pos_y = 0
+            pos_y -= speed
+        if keys[pygame.K_DOWN]:
+            if pos_y > SCREEN_HEGHT - 50:
+                pos_y = SCREEN_HEGHT - 50
+            pos_y += speed
+    else:
+        if jump_count >= -10:
+            neg = 1
+            if jump_count < 0:
+                neg = -1
+            pos_y -= (jump_count ** 2) * 0.5 * neg
+            jump_count -= 1
+        else:
+            is_jump = False
+            jump_count = 10
+
+    if keys[pygame.K_SPACE]:
+        is_jump = True
+
+    # draw
+    screen.fill(BLACK)
+    pygame.draw.rect(screen, (255, 0, 0), (pos_x, pos_y, width, hight))
+    pygame.display.flip()
+
+pygame.quit()
